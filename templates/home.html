@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block login %} 
+{% if current_user.is_authenticated %}
+<div class="input-group mb-3">
+  <a href="#">{{ current_user.username }}</a>
+</div>
+	
+{% endif %}
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="card">
+	<div class="card-body">
+		<div class="input-group" style=" margin-left: 5px; margin-top: 3px;" >
+			<div class="input-group-prepend">
+		    	<span class="input-group-text">  <img style="width: 40px; height: 40px;" src="https://scontent.fktm3-1.fna.fbcdn.net/v/t1.0-9/27540886_2018752978403801_5231048398945606102_n.jpg?_nc_cat=0&oh=e7556436f020183e936c7fe94494d061&oe=5B9A087F"> </span>
+		  	</div>
+		   <textarea placeholder="Type Your Status Here" class="form-control" aria-label="With textarea"></textarea>
+
+		</div>
+
+  	<button style="float: right; margin-top: 3px; margin-right: 5px;" type="submit" class="btn btn-outline-danger"> Post </button>
+  </div>
+
+
+
+	<div class="card">
+	  <div class="card-body">
+	  		<div>
+				<img style="  width: 80px; height: 80px;" src="http://e0.365dm.com/18/04/16-9/20/skysports-carlo-ancelotti-press-conference_4291423.jpg?20180424124535" alt="img">
+				<b style="position: absolute; margin-left: 5px;"> Ancelotti offered Italy Job </b>
+				<small style="margin-left: 5px;"> Submitted by <a href="#">/sanjivg</a></small>
+				<small style="margin-left: 5px;"> Posted Time: <em> 3 minutes ago </em> </small>
+			</div>
+
+			<div>
+			</div>
+	  </div>
+	</div>
+
+
+
+
+
+{% endblock %}
+
+

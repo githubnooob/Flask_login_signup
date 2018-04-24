@@ -46,7 +46,7 @@ def verify_email(form, field):
 	if email_check:
 		email_check =  str(email_check[0].encode("utf-8"))
 		if str(email_check)==field.data:
-		    raise ValidationError('Email must be unique')
+		    raise ValidationError('Email is already used. Try Another ')
 
 
 class RegisterForm(Form):
@@ -59,8 +59,3 @@ class LoginForm(Form):
 	username = StringField('Username',validators=[DataRequired(),username_login])
 	password = PasswordField('Password',validators=[DataRequired(),password_login])
 
-
-
-def is_42(form, field):
-    if field.data != 42:
-        raise ValidationError('Must be 42')
