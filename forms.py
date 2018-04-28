@@ -1,6 +1,7 @@
 from wtforms import Form, BooleanField, StringField, PasswordField, validators
 from wtforms.validators import DataRequired
 from wtforms.validators import ValidationError
+from wtforms.widgets import TextArea
 from home import db
 from home import User 
 from flask_bcrypt import check_password_hash as cPass
@@ -58,4 +59,7 @@ class RegisterForm(Form):
 class LoginForm(Form):
 	username = StringField('Username',validators=[DataRequired(),username_login])
 	password = PasswordField('Password',validators=[DataRequired(),password_login])
+
+class PostForm(Form):
+	post = StringField(' Enter Your Question ',widget=TextArea(),validators=[DataRequired(),validators.Length(min=1,max=250)])		
 

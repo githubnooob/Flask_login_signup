@@ -1,0 +1,108 @@
+.logo
+{
+	width: 25%;
+	float: left;
+}
+
+.homeJumboInfo
+{
+	float: right;
+}
+
+.homeJumbotron
+{
+	background-color: #9E9E9E;
+	margin: 20px;
+	overflow: hidden;
+}
+
+a
+{
+    text-decoration: none !important;
+}
+
+.list-group
+{
+	color: red; 
+}
+
+.card
+{
+	margin: 20px;
+}
+
+
+.category
+{
+	color: #FFF !important; 
+}
+
+.websiteName
+{
+	font-size: 300%;
+}
+
+.smallInfo
+{
+	font-size: 200%
+}
+
+footer
+{
+	margin-bottom: 20px;
+	margin-left: 10px;	
+}
+
+.eachpost
+{
+	color: blue;
+}
+
+.userPostedImage
+{
+	width: 80px;
+	height: 80px;
+}
+
+.userPostedPostTitle{
+	color: black;
+	font-size: 30px;
+	margin-left: 20px;
+	text-decoration: none;
+	font-family: 'Gamja Flower', cursive !important;
+}
+.userWhoPosted
+{
+	margin-left: 20px;
+	font-size: 15px;
+	color: grey; 
+}
+
+.timeOfPost
+{
+	margin-left: 10px;
+	color: black;
+}
+
+.postForm
+{
+	margin-left: 20px;
+	margin-right:10px; 
+}
+
+.title
+{
+	margin-bottom: 3px;
+	font-size: 25px;
+	font-family: 'Gamja Flower', cursive !important;
+}
+.link
+{
+	font-family: monospace;
+	color: blue !important;
+}
+
+.postButton
+{
+	margin-top: 5px;
+}
