@@ -23,7 +23,7 @@ a
 
 .list-group
 {
-	color: red; 
+	color: red;
 }
 
 .card
@@ -34,7 +34,7 @@ a
 
 .category
 {
-	color: #FFF !important; 
+	color: #FFF !important;
 }
 
 .websiteName
@@ -47,11 +47,6 @@ a
 	font-size: 200%
 }
 
-footer
-{
-	margin-bottom: 20px;
-	margin-left: 10px;	
-}
 
 .eachpost
 {
@@ -60,8 +55,8 @@ footer
 
 .userPostedImage
 {
-	width: 80px;
-	height: 80px;
+	width: 100px;
+	height: 100px;
 }
 
 .userPostedPostTitle{
@@ -75,7 +70,7 @@ footer
 {
 	margin-left: 20px;
 	font-size: 15px;
-	color: grey; 
+	color: grey;
 }
 
 .timeOfPost
@@ -87,7 +82,7 @@ footer
 .postForm
 {
 	margin-left: 20px;
-	margin-right:10px; 
+	margin-right:10px;
 }
 
 .title
@@ -105,4 +100,18 @@ footer
 .postButton
 {
 	margin-top: 5px;
+}
+
+.tab-content{
+overflow: hidden;
+}
+
+.nav-tabs
+{
+margin-bottom: 0px;
+}
+
+.profile_image{
+	width: 90px;
+	height: 90px;
 }

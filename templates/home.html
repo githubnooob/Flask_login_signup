@@ -14,13 +14,13 @@
     <title> RecomLink </title>
   </head>
   <body>
-    
+
     <aside>
-      
+
     </aside>
 
     <content>
-      
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand" href="#">
             <img src="../static/images/logo.png" width="30" height="30" alt="">
@@ -36,9 +36,9 @@
             <p class="lead smallInfo">Much Like Reddit, let me see how far this thing goes! </p>
             <hr class="my-4">
             <p class="smallInfo"> <a class="LinkHome" href="/register"> Register</a> your account. </p>
-            <p class="smallInfo"> Earn  <span style="color: #FF6F00;"> Points</span> </p>
-            <p class="smallInfo"> Share Your Website <span style="color: blue;" >Link </span> </p>
-            <p class="smallInfo"> Earn Traffic </p>
+            <p class="smallInfo"> Get along with  <span style="color: #FF6F00;"> RecomLink</span> </p>
+            <p class="smallInfo"> Share Proper <span style="color: blue;" >Link </span> </p>
+            <p class="smallInfo"> Help Others </p>
 
           </div>
         </div>
@@ -73,65 +73,40 @@
       <div class="tab-content">
           <div id="latest" class="tab-pane active">
               <ul class="list-group eachpost">
-                {% for key,value in posts.items() %}
+                {% for post in posts %}
                 <li class="list-group-item">
                   <div class="row">
-                    {% if posts[key].img_link %}
-                    <img class="userPostedImage " src="{{posts[key].img_link}}" alt="image">
+                    {% if post.img_link %}
+                    <img class="userPostedImage " src="{{post.img_link}}" alt="image">
                     {% else %}
-                    <img class="userPostedImage " src="{{url_for('static',filename='images/logo.png')}}" alt="image">                    
+                    <img class="userPostedImage " src="{{url_for('static',filename='images/logo.png')}}" alt="image">
                     {% endif %}
                     <div>
-                      <a class="userPostedPostTitle" target="_blank" href="{{ posts[key].news_link }}"> {{  posts[key].post }} </a>
-                      <p > <a class="userWhoPosted" href="#">/{{ posts[key].user }}</a>  <span class="timeOfPost"> {{ posts[key].date }} </span> </p>
+                      <a class="userPostedPostTitle" target="_blank" href="{{ post.news_link }}"> {{  post.post }} </a>
+                      <p > <a class="userWhoPosted" href="#">/{{ post.user }}</a>  <span class="timeOfPost"> {{ post.date }} </span>
+                      </p>
                     </div>
-                  </div>               
-              </li>
 
+                  </div>
+
+              </li>
               {% endfor %}
               </ul>
+                {% if prev_url %}
+                <a href="{{ prev_url }}">prev</a>
+                {% endif %}
+                {% if next_url %}
+                <a href="{{ next_url }}">next</a>
+                {% endif %}
           </div>
-
-          <div id="top" class="tab-pane fade in active">
-              <ul class="list-group">
-                <li class="list-group-item active">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Morbi leo risus</li>
-                <li class="list-group-item">Porta ac consectetur ac</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-              </ul>
-          </div>
-
-
-          <div id="popular" class="tab-pane fade in active">
-              <ul class="list-group">
-                <li class="list-group-item active">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Morbi leo risus</li>
-                <li class="list-group-item">Porta ac consectetur ac</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-              </ul>
-          </div>
-
-          <div id="sponsored" class="tab-pane fade in active">
-              <ul class="list-group">
-                <li class="list-group-item active">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Morbi leo risus</li>
-                <li class="list-group-item">Porta ac consectetur ac</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-              </ul>
-          </div>
-
 
       </div>
 
     </content>
 
-    <footer>
-       &copy; Copyright 2018 All Rights Reserved
-    </footer>
 
+<br>
+<br>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
