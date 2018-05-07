@@ -63,3 +63,8 @@ class LoginForm(Form):
 class PostForm(Form):
 	post = StringField(' Enter Your Question ',widget=TextArea(),validators=[DataRequired(),validators.Length(min=1,max=250)])		
 
+class PasswordResetForm(Form):
+	email = StringField('Email',[validators.Length(min=6, max=30),validators.Email()])
+
+class PasswordAgainForm(Form):
+	password = PasswordField('Password',[validators.Length(min=6, max=30)])

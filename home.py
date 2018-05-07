@@ -1,15 +1,21 @@
-from flask import Flask,render_template,request,g,request,redirect,url_for,session
+from flask import Flask,render_template,request,g,request,redirect,url_for,session, flash 
 from flask_login import LoginManager, UserMixin,login_user, login_required,logout_user, current_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
-import re
+import re, time 
 import forms
 import GetAvatar
 from wtforms.validators import ValidationError
 import datetime
 from flask_bcrypt import generate_password_hash as bPass
+from flask_mail import Mail, Message 
+import reset_pass
+from threading import Thread
 
 app = Flask(__name__)
+app.config.from_pyfile('config.cfg')
+mail = Mail(app)
+
 app.secret_key="kjasdh,mvnkasjdioarulzxcmzxcas;ldka;sd"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////root/Desktop/Social_Network/users.db'
 
@@ -53,6 +59,7 @@ class Post(db.Model):
     date = db.Column(db.DateTime(),default =datetime.datetime.now)
     img_link = db.Column(db.String)
     news_link = db.Column(db.String)
+
 
 
 user_dict_ = {}
@@ -171,11 +178,56 @@ def logout():
 	logout_user()
 	return redirect(url_for("home"))
 
+def send_async_email(app, msg):
+    with app.app_context():
+        mail.send(msg)
+
+
+def send_email(subject,sender,recipients,user):
+	receivers = []
+	receivers.append(recipients)
+	msg = Message(subject, sender = sender, recipients = receivers)
+	token = reset_pass.resetPassword(receivers[0])
+	username = user.username
+	html = render_template("password_reset_link.html",username=username,token=token)
+	msg.html = html
+	Thread(target=send_async_email, args=(app, msg)).start()
+
+@app.route("/checkResetPassword",methods=['GET','POST'])
+def checkPass():
+	form = forms.PasswordAgainForm(request.form)
+	url_token = request.args.get("token")
+	email = reset_pass.checkResetPass(url_token)
+	if request.method == "GET":
+		if email:
+			return render_template("password_again.html",form=form)
+		else:
+			return redirect(url_for('login'))
+	else:
+		new_pass = form.password.data
+		user = User.query.filter_by(email=email).first()
+		user.password = bPass(new_pass)
+		db.session.commit()
+		return redirect(url_for("login"))
+
+
+@app.route("/resetPassword",methods=['GET','POST'])
+def resetPass():
+	if current_user.is_authenticated:
+		return redirect(url_for("home"))
+	form = forms.PasswordResetForm(request.form)
+	if request.method == "POST" and form.validate:
+		print "RESET PASSWORD "
+		given_email = form.email.data
+		user = User.query.filter_by(email = given_email).first()		
+		if user:
+			send_email(" Reset Password ", "anyone@gmail.com",given_email,user)
+			flash(" Confirmation Link has been sent.")
+	return render_template("forgot_pass.html",form=form)
+
 @app.errorhandler(404)
 def page_not_found(e):
 	return render_template("404.html",error = e)
-
-
 
 
 
